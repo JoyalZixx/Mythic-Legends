@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+em {
+    color: greenyellow;
+}
+
+/* CSS for the Mythic Legends logo */
+#title {
+    font-family: 'Cinzel', serif; /* Use Cinzel font, you can change it to any other if you prefer */
+    font-size: 48px; /* Adjust the size as needed */
+    font-weight: bold;
+    text-transform: uppercase; /* Make the letters all uppercase */
+    color: #FFD700; /* Gold color for an epic look */
+    text-shadow: 3px 3px 0px #000000, /* Black border */
+                 -1px -1px 0px #000000, /* Black border */
+                 1px -1px 0px #000000, /* Black border */
+                 -1px 1px 0px #000000, /* Black border */
+                 0px 0px 25px rgba(255, 215, 0, 0.5); /* Glowing effect */
+    letter-spacing: 2px; /* Spacing between letters for a more heroic feel */
+    margin: 20px 0; /* Adjust margins for spacing */
+    text-align: center; /* Center-align the text */
+  }
+  
+  /* Optional: Adding Cinzel font via Google Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+  
+
+.damageMsg{
+    color: red;
+}
+
+#btn2 {
+    display: none;
+}
+
+#btn3 {
+    display: none;
+}
+
+#btn4 {
+    display: none;
+}
+
+body {
+    background-color: #8675c2;
+    background-image: url('images/slime_field.webp');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.headContainer{
+    margin: 0px 7px 0px 7px;    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 9vh;
+}
+
+.container {
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.btncontainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px
+}
+
+.msg-screen {
+    width: 500px;
+    min-height: 150px;
+    max-height: 200px;
+    border-radius: 25px;
+    background-color: #1e1e1e;
+    text-align: center;
+    color: #E0E0E0;
+    overflow: scroll;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    ::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+    }
+}
+
+.msg-screen p {
+    padding: 20px;
+    font-weight: 800;
+    font-size: 20px;
+    
+}
+
+.button {
+    margin-top: 50px;
+    padding: 20px 45px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+  }
+  
+.button:hover {
+    background-color: #23c483;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+#inventoryView {
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+#inventoryView:hover {
+    background-color: #23c483;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 70px;
+}
