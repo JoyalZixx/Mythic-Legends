@@ -11,6 +11,18 @@ let explore = 0;
 let health = 100;
 let coin = 0;
 
+function gameOver() {
+  if (health == 0 || health < 0) {
+    msgScreen.innerHTML = "<span class = 'damageMsg'>game over</span>";
+    document.querySelectorAll('#btn1, #btn2, #btn3, #btn4').forEach(button => button.style.display = "none");
+    const btnContainer = document.querySelector('.btncontainer');
+    const respawnbtn = document.createElement('button');
+    respawnbtn.classList.add('button');
+    respawnbtn.textContent = 'respawn';
+    btnContainer.appendChild(respawnbtn);
+  }
+}
+
 //audio
 let click = document.getElementById("click");
 
@@ -70,8 +82,15 @@ btn1.addEventListener("click", () => {
         btn2.innerHTML = "slime field";
         btn3.innerHTML = "heal";
         msgScreen.innerHTML = `You walked through the forest and found a ${ranitem}! <br> <em>You also found a slime field.</em>`;
-    }
+      }
+      btn1.disabled = true;
+      btn1.style.cursor = "not-allowed";
+      setTimeout(() => {
+        btn1.disabled = false;
+        btn1.style.cursor = "pointer";
+     }, 500);    
 });
+
 
 btn2.addEventListener("click", () => {
     click.play()
@@ -81,6 +100,7 @@ btn2.addEventListener("click", () => {
         msgScreen.innerHTML = `You were walking through the slime field and a slime attacked you!<br><span class="damageMsg">You took 10 damage.</span><br>You swung your sword and hit the slime.<br><em>you killed the slime.</em>`;
         document.querySelector('.health-bar .inner').style.width = `${health}%`;
         document.querySelector('.health-bar .text').innerHTML = `${health}`;
+        gameOver();
     }
 });
 
