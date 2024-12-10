@@ -2,6 +2,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 em {
@@ -48,11 +52,7 @@ em {
 body {
     background-color: #8675c2;
     /* background-image: url('images/woke_up.jfif'); */
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    transition: background-image 0.5s ease-in-out;
-    margin-left: 10px;
+    /* margin-left: 10px; */
 }
 
 .headContainer{
@@ -89,7 +89,6 @@ body {
     overflow-y: scroll;
     scrollbar-width: none;
     -ms-overflow-style: none;
-
     ::-webkit-scrollbar {
         width: 0px;
         background: transparent;
@@ -100,7 +99,7 @@ body {
     padding: 20px;
     font-weight: 800;
     font-size: 20px;
-    
+    color: #fff9f9;
 }
 
 .button {
@@ -155,13 +154,16 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    height: 70px;
+    height: 90px;
+    background-color: #23c483;
     display: flex;
     justify-content: flex-start;
-    gap: 10px;
+    gap: 20px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
 }
 
-.healthContainer, .coinContainer{
+.healthContainer{
     display: flex;
     align-items: center;
 }
@@ -199,3 +201,8 @@ footer {
     font-family: 'Courier New', Courier, monospace;
     color: black;
   }
+
+.coinContainer {
+    display: flex;
+    align-items: center;
+}

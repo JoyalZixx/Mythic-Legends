@@ -1,9 +1,9 @@
-let msgScreen = document.getElementById("msgText");
+const msgScreen = document.getElementById("msgText");
 
-let btn1 = document.getElementById("btn1");
-let btn2 = document.getElementById("btn2");
-let btn3 = document.getElementById("btn3");
-let btn4 = document.getElementById("btn4");
+const btn1 = document.getElementById("btn1");
+const btn2 = document.getElementById("btn2");
+const btn3 = document.getElementById("btn3");
+const btn4 = document.getElementById("btn4");
 
 //To view the btn2
 let explore = 0;
@@ -12,19 +12,39 @@ let health = 100;
 let coin = 0;
 
 function gameOver() {
-  if (health == 0 || health < 0) {
+  if (health <= 0) {
     msgScreen.innerHTML = "<span class = 'damageMsg'>game over</span>";
     document.querySelectorAll('#btn1, #btn2, #btn3, #btn4').forEach(button => button.style.display = "none");
     const btnContainer = document.querySelector('.btncontainer');
     const respawnbtn = document.createElement('button');
     respawnbtn.classList.add('button');
+    respawnbtn.id = 'respawnbtn';
     respawnbtn.textContent = 'respawn';
     btnContainer.appendChild(respawnbtn);
+
+    respawnbtn.disabled = true;
+    respawnbtn.style.cursor = "not-allowed";
+    setTimeout(() => {
+      respawnbtn.disabled = false;
+      respawnbtn.style.cursor = "pointer";
+   }, 1000); 
+
+    respawnbtn.addEventListener("click", () => {
+      console.log("respawn");
+      respawnbtn.remove();
+      document.querySelectorAll('#btn1, #btn2, #btn3').forEach(button => button.style.display = "block");
+      msgScreen.innerHTML ="You woke up feeling hurt, but you are still alive. Keep eating apples. <span class = 'damageMsg'><br>You lost 10 coins</span>";
+      health = 20;
+      document.querySelector('.health-bar .inner').style.width = `${health}%`;
+      document.querySelector('.health-bar .text').innerHTML = `${health}`;
+      coin -= 10;
+      document.querySelector('.coinContainer .coin').innerHTML = `coin: ${coin}`;
+    });
   }
 }
 
 //audio
-let click = document.getElementById("click");
+const click = document.getElementById("click");
 
 const items = ["rock", "stick", "fiber", "apple", "mushroom"];
 
@@ -88,18 +108,19 @@ btn1.addEventListener("click", () => {
       setTimeout(() => {
         btn1.disabled = false;
         btn1.style.cursor = "pointer";
-     }, 500);    
+     }, 100);    
 });
 
 
 btn2.addEventListener("click", () => {
     click.play()
     if (btn2.innerHTML == "slime field") {
-        // document.body.style.backgroundImage = "url('images/slime_field.webp')";
         health -= 10;
+        coin += 10;
         msgScreen.innerHTML = `You were walking through the slime field and a slime attacked you!<br><span class="damageMsg">You took 10 damage.</span><br>You swung your sword and hit the slime.<br><em>you killed the slime.</em>`;
         document.querySelector('.health-bar .inner').style.width = `${health}%`;
         document.querySelector('.health-bar .text').innerHTML = `${health}`;
+        document.querySelector('.coinContainer .coin').innerHTML = `${coin}`;
         gameOver();
     }
 });
@@ -112,7 +133,7 @@ btn3.addEventListener("click", () => {
             msgScreen.innerHTML = `<span class="damageMsg">You are already at full health.</span>`;
         }else if(apple && apple.quantity > 0) {
             health +=10;
-            apple.quantity -= 1; 
+            apple.quantity -= 1;
             msgScreen.innerHTML = `<em>You healed 10 health.</em>`;
             document.querySelector('.health-bar .inner').style.width = `${health}%`;
         } else {
@@ -120,4 +141,8 @@ btn3.addEventListener("click", () => {
         }
         document.querySelector('.health-bar .text').innerHTML = `${health}`;
     }
-})
+});
+
+
+
+
