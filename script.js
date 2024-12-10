@@ -58,10 +58,11 @@ btn1.innerHTML = "explore";
 
 btn1.addEventListener("click", () => {
     click.play()
+    // document.body.style.backgroundImage = "url('images/woke_up.jfif')";
     let ranitem = items[Math.floor(Math.random() * items.length)];
     console.log(ranitem);
     increaseQuantity(ranitem, 1);
-    msgScreen.innerHTML = `You walked throught the forest and found a ${ranitem}!`;
+    msgScreen.innerHTML = `You walked through the forest and found a ${ranitem}!`;
     explore += 1;
     if (explore == 3) {
         btn2.style.display = "block";
@@ -75,10 +76,11 @@ btn1.addEventListener("click", () => {
 btn2.addEventListener("click", () => {
     click.play()
     if (btn2.innerHTML == "slime field") {
+        // document.body.style.backgroundImage = "url('images/slime_field.webp')";
         health -= 10;
         msgScreen.innerHTML = `You were walking through the slime field and a slime attacked you!<br><span class="damageMsg">You took 10 damage.</span><br>You swung your sword and hit the slime.<br><em>you killed the slime.</em>`;
-        document.getElementsByClassName("health")[0].innerHTML = ` Health: ${health}`;
-
+        document.querySelector('.health-bar .inner').style.width = `${health}%`;
+        document.querySelector('.health-bar .text').innerHTML = `${health}`;
     }
 });
 
@@ -92,11 +94,10 @@ btn3.addEventListener("click", () => {
             health +=10;
             apple.quantity -= 1; 
             msgScreen.innerHTML = `<em>You healed 10 health.</em>`;
+            document.querySelector('.health-bar .inner').style.width = `${health}%`;
         } else {
             msgScreen.innerHTML = `<span class="damageMsg">You don't have an apple. Try exploring the forest.</span>`
         }
-        document.getElementsByClassName("health")[0].innerHTML = `Health: ${health}`;
+        document.querySelector('.health-bar .text').innerHTML = `${health}`;
     }
 })
-//health bar
-document.getElementsByClassName("health")[0].innerHTML = ` Health: ${health}`;
