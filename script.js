@@ -220,4 +220,3 @@ function retrieveProgress() {
   }
   return { health: 100, coin: 0, explore: 0, inventory: [] };
 }
-
