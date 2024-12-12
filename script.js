@@ -1,3 +1,5 @@
+let inventory = [];
+
 const msgScreen = document.getElementById("msgText");
 
 const btn1 = document.getElementById("btn1");
@@ -11,6 +13,7 @@ window.addEventListener("DOMContentLoaded", function() {
   health = progress.health;
   coin = progress.coin;
   explore = progress.explore;
+  inventory = progress.inventory;
 
   document.querySelector('.health-bar .inner').style.width = `${health}%`;
   document.querySelector('.health-bar .text').innerHTML = `${health}`;
@@ -45,7 +48,7 @@ function gameOver() {
 
     health = retrieveProgress().health;
     coin = retrieveProgress().coin;
-
+    
     respawnbtn.disabled = true;
     respawnbtn.style.cursor = "not-allowed";
     setTimeout(() => {
@@ -74,8 +77,11 @@ const click = document.getElementById("click");
 const items = ["rock", "stick", "fiber", "apple", "mushroom"];
 
 function createInventoryFromItemsArray() {
-  inventory = items.map(name => {
-    return { name, quantity: 0 };
+  items.forEach(name => {
+    const existingItem = inventory.find(i => i.name.toLowerCase() === name.toLowerCase());
+    if (!existingItem) {
+      inventory.push({ name, quantity: 0 });
+    }
   });
 }
 
@@ -85,6 +91,7 @@ inventory.push({ name: "sword", quantity: 1 });
 
 document.getElementById("inventoryView").addEventListener("click", () => {
   click.play()
+  saveProgress();
   displayInventory();
 });
 
@@ -175,6 +182,7 @@ function saveProgress() {
     health,
     coin,
     explore,
+    inventory,
   };
   localStorage.setItem("progressData", JSON.stringify(progressData));
 };
@@ -186,6 +194,6 @@ function retrieveProgress() {
     const data = JSON.parse(progressData);
     return data; // Return the parsed progress data
   } else {
-    return { health: 100, coin: 0, explore: 0 }; // Return default values if no progress data is found
+    return { health: 100, coin: 0, explore: 0, inventory: [] }; // Return default values if no progress data is found
   }
 };
