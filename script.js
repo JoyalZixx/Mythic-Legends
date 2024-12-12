@@ -102,6 +102,30 @@ document.getElementById("inventoryView").addEventListener("click", () => {
   displayInventory();
 });
 
+document.getElementById("resetBtn").addEventListener("click", () => {
+
+    localStorage.removeItem("progressData");
+    
+    health = 100; 
+    coin = 0; 
+    explore = 0; 
+    inventory = [];
+
+    msgScreen.innerHTML = "Progress has been reset. <br> now go explore.";
+
+
+    document.querySelector('.health-bar .inner').style.width = `${health}%`;
+    document.querySelector('.health-bar .text').innerHTML = `${health}`;
+    document.querySelector('.coinContainer .coin').innerHTML = `${coin}`;
+
+    createInventoryFromItemsArray();
+    // if (explore >= 3) {
+    //   btn2.style.display = "block";
+    //   btn3.style.display = "block";
+    //   btn2.innerHTML = "slime field";
+    //   btn3.innerHTML = "heal";
+    // }
+});
 // Increase quantity of an item in inventory
 function increaseQuantity(itemName, amount) {
   if (!itemName || amount === undefined) {
