@@ -136,10 +136,9 @@ function increaseQuantity(itemName, amount) {
   if (!item) {
     throw new Error(`Item with name "${itemName}" not found in inventory`);
   }
-
+  
   item.quantity += amount;
 }
-
 
 function addNewItemToInventory(itemName, quantity) {
   if (!itemName || quantity === undefined) {
