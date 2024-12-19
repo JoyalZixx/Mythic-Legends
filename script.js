@@ -1,5 +1,7 @@
 // Initialize inventory
-let inventory = [];
+let inventory = [{name: "sword", quantity: 1}];
+
+
 
 // Reference to the message screen
 const msgScreen = document.getElementById("msgText");
@@ -97,28 +99,32 @@ function displayInventory() {
   });
 }
 
+// display inventory
 document.getElementById("inventoryView").addEventListener("click", () => {
   click.play();
   displayInventory();
 });
 
+// reset button
 document.getElementById("resetBtn").addEventListener("click", () => {
+  localStorage.removeItem("progressData");
+  
+  health = 100; 
+  coin = 0; 
+  explore = 0; 
+  inventory = [];
 
-    localStorage.removeItem("progressData");
-    
-    health = 100; 
-    coin = 0; 
-    explore = 0; 
-    inventory = [];
-
-    msgScreen.innerHTML = "Progress has been reset. <br> now go explore.";
+  addNewItemToInventory("sword", "1");
 
 
-    document.querySelector('.health-bar .inner').style.width = `${health}%`;
-    document.querySelector('.health-bar .text').innerHTML = `${health}`;
-    document.querySelector('.coinContainer .coin').innerHTML = `${coin}`;
+  msgScreen.innerHTML = "Progress has been reset. <br> now go explore.";
 
-    createInventoryFromItemsArray();
+
+  document.querySelector('.health-bar .inner').style.width = `${health}%`;
+  document.querySelector('.health-bar .text').innerHTML = `${health}`;
+  document.querySelector('.coinContainer .coin').innerHTML = `${coin}`;
+
+  createInventoryFromItemsArray();
     // if (explore >= 3) {
     //   btn2.style.display = "block";
     //   btn3.style.display = "block";
@@ -156,10 +162,7 @@ function addNewItemToInventory(itemName, quantity) {
   console.log(`Item "${itemName}" has been added to the inventory with quantity ${quantity}.`);
 }
 
-addNewItemToInventory("sword", "1");
-
-
-
+// explore button
 btn1.innerHTML = "Explore";
 btn1.addEventListener("click", () => {
   click.play();
